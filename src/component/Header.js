@@ -64,19 +64,23 @@ function Header() {
             }
         });
     }
+    function dontRefresh(e){
+        e.preventDefault();
+    }
     useEffect(() => {
-        const divElement = input1Ref.current;
+        const divElement = input1Ref.current.value;
         console.log(divElement);
+        console.log($("#name").val())
     },[])
     useEffect(() => {
-        console.log(input1Ref.current);
+        console.log(input1Ref.current.value);
     })
     return(
         <div style={mystyle}>
             <div>
-            <form action="##" method="get" id="form1">
+            <form action="##" method="get" id="form1" onSubmit={dontRefresh}>
                 <input ref = {input1Ref} type="text"  id="name" style={searchBarCss} placeholder="Search" size="70"></input>
-                <input type="image" src ={pic} name="" id="" style={searchButtonCss} onClick={Login()}></input>
+                <input type="image" src ={pic} name="" id="" style={searchButtonCss}></input>
             </form>
             </div> 
         </div>
