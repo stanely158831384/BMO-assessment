@@ -29,7 +29,7 @@ function Home(){
 
     let buttonCss = {
         display: "inline",
-        margin: "20px 10px 5px 10px",
+        margin: "10px 10px 5px 10px",
         float: "right",
     }
 
@@ -66,8 +66,6 @@ function Home(){
                     }
                     return (a1-b1);
                 })
-                console.log("here is the publish data");
-                console.log(dbObject.docs);
                 dispatch({type:"addData",value:dbObject});
             }
             
@@ -75,7 +73,16 @@ function Home(){
     }
 
     function sortByAlphabetic(){
-
+        let dbObject = Object.assign({},db);
+        if(dbObject.docs!=null){
+            if(dbObject.docs.length!=0){
+                dbObject.docs.sort(function(a,b){   
+                    return a.title.localeCompare(b.title);
+                })
+                dispatch({type:"addData",value:dbObject});
+            }
+            
+        }
     }
 
 
@@ -120,7 +127,7 @@ function Home(){
     return(
         <div style={dispalyFormCss}>
             <h1 style={{display: 'inline'}}>Search result: name</h1>
-            <button onClick={null} style={buttonCss}>Sort by alphabetically</button>
+            <button onClick={sortByAlphabetic} style={buttonCss}>Sort by alphabetically</button>
             <button onClick={sortByPublishDate} style={buttonCss}>Sort by publish_date</button>
             {parse(htmlString)}
         </div>
