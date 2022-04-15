@@ -41,12 +41,16 @@ function Header() {
     var reRef = "";
     var input1Ref = useRef();
     // var input2Ref = createRef(input1);
-    function Login(){
-        // let result = $("#name").val();
-        console.log(input1Ref.current);
-        input1Ref = $.trim(input1Ref);
-        input1Ref = input1Ref.replace(" ","+");
-        let url = "http://openlibrary.org/search.json?q=the+great+gatsby";
+    function Login(e){
+        e.preventDefault();
+        console.log("Here is the jquery value: "+$('#name').val());
+        let result = input1Ref.current.value;
+        console.log(input1Ref.current.value);
+        result = $.trim(result);
+        console.log("result1 is "+result);
+        result = result.replaceAll(" ","+");
+        console.log("result2 is "+result);
+        let url = "http://openlibrary.org/search.json?q="+result;
         console.log(url);
         $.ajax({
             type: "GET",
@@ -55,6 +59,7 @@ function Header() {
             data: $('#form1').serialize(),
             success: function(result){
                 console.log(result);
+                dispatch({type:"addData",value:result});
                 if(result.resultCode==200){
                     alert("Success");
                 }
@@ -64,9 +69,10 @@ function Header() {
             }
         });
     }
-    function dontRefresh(e){
-        e.preventDefault();
-    }
+    // function dontRefresh(e){
+    //     e.preventDefault();
+    //     console.log(input1Ref.current.value);
+    // }
     useEffect(() => {
         const divElement = input1Ref.current.value;
         console.log(divElement);
@@ -78,9 +84,10 @@ function Header() {
     return(
         <div style={mystyle}>
             <div>
-            <form action="##" method="get" id="form1" onSubmit={dontRefresh}>
+            <form action="##" method="get" id="form1" onSubmit={Login}>
                 <input ref = {input1Ref} type="text"  id="name" style={searchBarCss} placeholder="Search" size="70"></input>
-                <input type="image" src ={pic} name="" id="" style={searchButtonCss}></input>
+                <button type="submit" name="" id="" style={searchButtonCss}><img src={pic} width="100%"></img></button>
+
             </form>
             </div> 
         </div>
