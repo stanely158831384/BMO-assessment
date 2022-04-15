@@ -91,3 +91,8 @@
 
 }
 
+@media (min-width: 768px) {
+  .searchResultTitle button{
+    float: right;
+  }
+}

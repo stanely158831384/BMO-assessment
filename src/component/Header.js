@@ -1,6 +1,7 @@
 
-import React,{useEffect,useRef}from "react";
+import React,{useEffect,useRef,useState}from "react";
 import pic from "../static/a.svg.png";
+import pic2 from "../static/isbn.png";
 import $ from "jquery";
 import { useSelector, useDispatch } from "react-redux";
 function Header() {
@@ -16,8 +17,9 @@ function Header() {
         height: '50px',
         backgroundColor: 'white',
         position: 'absolute',
-        left: '150px',
-        top: '7px'
+        left: '210px',
+        top: '7px',
+        width: '40%'
     }
     let searchButtonCss = {
         display: 'inline',
@@ -28,6 +30,17 @@ function Header() {
         top: '10px',
         position: 'absolute',
     }
+
+    let isbnSwitchButtonCss= {
+        display: 'inline',
+        height: '50px',
+        width: '50px',
+        borderRadius: '50%',
+        left: '150px',
+        top: '10px',
+        position: 'absolute',
+    }
+
     let searchPicCss = {
         height: '50px',
         width: '50px',
@@ -35,6 +48,7 @@ function Header() {
         left: '-6px',
         top: '-3px'
     }
+    const [isNameOrIsbn, setIsNameOrIsbn] = useState("name");
     const dispatch = useDispatch();
     const db = useSelector((state) => state.db);
     const dbRef = useRef(db);
@@ -69,10 +83,14 @@ function Header() {
             }
         });
     }
-    // function dontRefresh(e){
-    //     e.preventDefault();
-    //     console.log(input1Ref.current.value);
-    // }
+
+    function isbnSwitch(){
+        if(isNameOrIsbn.equals("isbn")){
+            setIsNameOrIsbn("name");
+        }else{
+            setIsNameOrIsbn("isbn");
+        }
+    }
     useEffect(() => {
         const divElement = input1Ref.current.value;
         console.log(divElement);
@@ -85,9 +103,9 @@ function Header() {
         <div style={mystyle}>
             <div>
             <form action="##" method="get" id="form1" onSubmit={Login}>
-                <input ref = {input1Ref} type="text"  id="name" style={searchBarCss} placeholder="Search" size="70"></input>
+                <input ref = {input1Ref} type="text"  id="name" style={searchBarCss} placeholder="Search"></input>
                 <button type="submit" name="" id="" style={searchButtonCss}><img src={pic} width="100%"></img></button>
-
+                <button type="button" name="" id="" style={isbnSwitchButtonCss} onClick={isbnSwitch}><img src={pic2} width="100%"></img></button>
             </form>
             </div> 
         </div>

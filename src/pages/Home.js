@@ -21,16 +21,17 @@ function Home(){
         borderRadius: 10px;
         margin: 10px 5px;
         outline: dotted;
+        position: relative;
         `
 
-    let rowH2Css = 
-        `float: right`
+    let picCss = 
+        `position: absolute;
+        right:0px`
     
 
     let buttonCss = {
         display: "inline",
         margin: "10px 10px 5px 10px",
-        float: "right",
     }
 
     var [isLoading, setIsLoading] = useState(true);
@@ -40,6 +41,7 @@ function Home(){
     const lol = "<h1>home</h1>";
 
     function sortByPublishDate(){
+        dispatch({type:"clear"});
         let dbObject = Object.assign({},db);
         if(dbObject.docs!=null){
             if(dbObject.docs.length!=0){
@@ -53,14 +55,18 @@ function Home(){
                     let a1 = 0;
                     let b1 = 0;
 
-                    if(a.publish_date[0].split(",").length!=0){
+                    if(a.publish_date[0].split(",").length!=1){
                         a1 = a.publish_date[0].split(",")[a.publish_date[0].split(",").length-1];
+                    }else if(a.publish_date[0].split(" ").length!=1){
+                        a1 = a.publish_date[0].split(" ")[a.publish_date[0].split(" ").length-1];
                     }else{
                         a1 = a.publish_date[0];
                     }
 
-                    if(b.publish_date[0].split(",").length!=0){
+                    if(b.publish_date[0].split(",").length!=1){
                         b1 = b.publish_date[0].split(",")[b.publish_date[0].split(",").length-1];
+                    }else if(b.publish_date[0].split(" ").length!=1){
+                        b1 = b.publish_date[0].split(" ")[b.publish_date[0].split(" ").length-1];
                     }else{
                         b1 = b.publish_date[0];
                     }
@@ -73,6 +79,7 @@ function Home(){
     }
 
     function sortByAlphabetic(){
+        dispatch({type:"clear"});
         let dbObject = Object.assign({},db);
         if(dbObject.docs!=null){
             if(dbObject.docs.length!=0){
@@ -95,38 +102,58 @@ function Home(){
         let dbString = "";
         console.log("db again");
         if(dbObject!=null){
-            dbObject.docs.forEach(doc =>{
-
-                const title = doc.title;
-                const name = doc.author_name;
-                var date = "";
-
-                if(doc.hasOwnProperty('publish_date')){
-                    if(doc.publish_date.length!=0){
-                        date = doc.publish_date[0];
+            if(dbObject.hasOwnProperty("docs")){
+                dbObject.docs.forEach(doc =>{
+                    const title = doc.title;
+                    const name = doc.author_name;
+                    var date = "";
+                    var isbn = "";
+                    if(doc.hasOwnProperty('publish_date')){
+                        if(doc.publish_date.length!=0){
+                            date = doc.publish_date[0];
+                        }
                     }
-                }
+                    if(doc.hasOwnProperty('isbn')){
+                        if(doc.isbn.length!=0){
+                            isbn = doc.isbn[0];
+                        }
+                    } 
+                    dbString += `<div style="${rowDivCss}">
+                   <div style="${picCss}"><img src="https://covers.openlibrary.org/b/isbn/${isbn}-S.jpg" /></div>
+                   <div >
+                   <h2>${title}</h2>
+                   <h2>${name}</h2>
+                   <h2>${date}</h2>
+                   </div> 
+                </div>`;
+                setHtmlString(dbString);
+                })
+            }else{
+                dbObject.records.forEach(function(record){
+                    const title = record.data.title;
+                    const name = record.data.authors[0].name;
+                    var date = record.publishDate;
+                    var isbn = record.isbns[0];
+                    dbString += `<div style="${rowDivCss}">
+                   <div style="${picCss}"><img src="https://covers.openlibrary.org/b/isbn/${isbn}-S.jpg" /></div>
+                   <div >
+                   <h2>${title}</h2>
+                   <h2>${name}</h2>
+                   <h2>${date}</h2>
+                   </div> 
+                </div>`;
                 
-
-                dbString += `<div style="${rowDivCss}">
-                <div>
-               <h2 style="${rowH2Css}">Cover</h2>
-               </div>
-               <div >
-               <h2>${title}</h2>
-               <h2>${name}</h2>
-               <h2>${date}</h2>
-               </div> 
-            </div>`;
-            setHtmlString(dbString);
-            })
+                })
+                setHtmlString(dbString);
+            }
+            
         }
     },[db])
 
 
     return(
-        <div style={dispalyFormCss}>
-            <h1 style={{display: 'inline'}}>Search result: name</h1>
+        <div style={dispalyFormCss} class="searchResultTitle">
+            <h1 style={{display: 'inline'}} >Search result: name</h1>
             <button onClick={sortByAlphabetic} style={buttonCss}>Sort by alphabetically</button>
             <button onClick={sortByPublishDate} style={buttonCss}>Sort by publish_date</button>
             {parse(htmlString)}
