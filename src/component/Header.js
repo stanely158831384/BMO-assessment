@@ -1,7 +1,6 @@
 
 import React,{useEffect,useRef,useState}from "react";
 import pic from "../static/a.svg.png";
-import pic2 from "../static/isbn.png";
 import $ from "jquery";
 import { useSelector, useDispatch } from "react-redux";
 function Header() {
@@ -31,30 +30,12 @@ function Header() {
         position: 'absolute',
     }
 
-    let isbnSwitchButtonCss= {
-        display: 'inline',
-        height: '50px',
-        width: '50px',
-        borderRadius: '50%',
-        left: '150px',
-        top: '10px',
-        position: 'absolute',
-    }
-
-    let searchPicCss = {
-        height: '50px',
-        width: '50px',
-        position: 'absolute',
-        left: '-6px',
-        top: '-3px'
-    }
     const dispatch = useDispatch();
     const db = useSelector((state) => state.db);
     const dbRef = useRef(db);
     var input1Ref = useRef();
     function Login(e){
         e.preventDefault();
-        console.log("Here is the jquery value: "+$('#name').val());
         let result = input1Ref.current.value;
         result = $.trim(result);
         result = result.replaceAll(" ","+");

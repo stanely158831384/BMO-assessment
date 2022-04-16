@@ -11,11 +11,6 @@ function Home(){
         textAlign: "left"
     }
 
-    let stylingRow = {
-        display: "inline",
-        float: "left"
-    }
-
     let rowDivCss = 
         `background-color: cadetblue;
         borderRadius: 10px;
@@ -97,7 +92,6 @@ function Home(){
     useEffect(()=>{
         let dbObject = db;
         let dbString = "";
-        console.log("db again");
         if(dbObject!=null){
             if(dbObject.hasOwnProperty("docs")){
                 dbObject.docs.forEach(doc =>{
