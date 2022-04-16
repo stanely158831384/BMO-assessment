@@ -34,12 +34,9 @@ function Home(){
         margin: "10px 10px 5px 10px",
     }
 
-    var [isLoading, setIsLoading] = useState(true);
     const dispatch = useDispatch();
     const db = useSelector((state) => state.db);
     var [htmlString, setHtmlString] = useState("");
-    const lol = "<h1>home</h1>";
-
     function sortByPublishDate(){
         dispatch({type:"clear"});
         let dbObject = Object.assign({},db);
@@ -128,32 +125,14 @@ function Home(){
                 </div>`;
                 setHtmlString(dbString);
                 })
-            }else{
-                dbObject.records.forEach(function(record){
-                    const title = record.data.title;
-                    const name = record.data.authors[0].name;
-                    var date = record.publishDate;
-                    var isbn = record.isbns[0];
-                    dbString += `<div style="${rowDivCss}">
-                   <div style="${picCss}"><img src="https://covers.openlibrary.org/b/isbn/${isbn}-S.jpg" /></div>
-                   <div >
-                   <h2>${title}</h2>
-                   <h2>${name}</h2>
-                   <h2>${date}</h2>
-                   </div> 
-                </div>`;
-                
-                })
-                setHtmlString(dbString);
             }
-            
         }
     },[db])
 
 
     return(
         <div style={dispalyFormCss} class="searchResultTitle">
-            <h1 style={{display: 'inline'}} >Search result: name</h1>
+            <h1 style={{display: 'inline'}} >Search result: </h1>
             <button onClick={sortByAlphabetic} style={buttonCss}>Sort by alphabetically</button>
             <button onClick={sortByPublishDate} style={buttonCss}>Sort by publish_date</button>
             {parse(htmlString)}
