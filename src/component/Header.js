@@ -66,7 +66,7 @@ function Header() {
             <div>
             <form action="##" method="get" id="form1" onSubmit={Login}>
                 <input ref = {input1Ref} type="text"  id="searchBar" style={searchBarCss} placeholder="Search"></input>
-                <button type="submit" name="" id="searchButton" style={searchButtonCss}><img src={pic} width="100%" ></img></button>
+                <button type="submit" name="searchButton" id="searchButton" style={searchButtonCss}><img src={pic} width="100%" alt="amplifier icon"></img></button>
             </form>
             </div> 
         </div>
