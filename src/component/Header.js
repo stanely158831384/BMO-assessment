@@ -1,8 +1,8 @@
 
-import React,{useEffect,useRef,useState}from "react";
+import React,{useEffect,useRef}from "react";
 import pic from "../static/a.svg.png";
 import $ from "jquery";
-import { useSelector, useDispatch } from "react-redux";
+import {useDispatch } from "react-redux";
 function Header() {
     let mystyle = {
         width: '100%',
@@ -31,15 +31,13 @@ function Header() {
     }
 
     const dispatch = useDispatch();
-    const db = useSelector((state) => state.db);
-    const dbRef = useRef(db);
     var input1Ref = useRef();
     function Login(e){
         e.preventDefault();
         let result = input1Ref.current.value;
         result = $.trim(result);
         result = result.replaceAll(" ","+");
-        let url = "http://openlibrary.org/search.json?q="+result;
+        let url = "https://openlibrary.org/search.json?q="+result;
         $.ajax({
             type: "GET",
             dataType: "json",
