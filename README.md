@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# 1.How to use this appliction
+just simply input command
+```
+npm install
+npm start
+```
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 2.Here is the demo link:
+https://bmo-react-assessment.herokuapp.com/
 
-## Available Scripts
+# 3.screenshot
+![Screen Shot 2022-04-17 at 12 07 19 PM](https://user-images.githubusercontent.com/43097897/163722876-87878456-ecdd-4bda-89d0-4c7b996a9bbf.png)
 
-In the project directory, you can run:
+![Screen Shot 2022-04-17 at 12 07 36 PM](https://user-images.githubusercontent.com/43097897/163722881-441957ae-1260-49d2-b658-76b8b03e1ab7.png)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Technical questions
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 1.How long did you spend on the coding assignment?
+a. I approcimatedly spent three days on programming the project. 
+b. i have finished the code testing, and only problem i needed to solve is the code performance.
 
-### `npm test`
+## 2.what was the most useful feature that was added to the latest version of your chosen language?
+```
+let  dbObject = Object.assign({},db);
+```
+This is the latest feature for the javascript es6, which is able to create a new nested object rapidly. And by this way we could easily avoid deep comparison problem.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 3.How would you track down a performance issue in production? Have you ever had to do this?
 
-### `npm run build`
+I would like to use the lighthouse chrome plugin and the chrome built-in development tool to track down the performance issue. This is necessary.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 4.How would you improve the API that you just used?
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The API has worked really well. For example, the api for searching by name can be also used by isbn code. This improvement can save tons of hours on frontend logic coding.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 5.Please describe yourself using correctly formatted JSON
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+{
+   "firstName":"junjie",
+   "lastName":"zhang",
+   "email":"stanley158831384@gmail.com",
+   "description":"i am a coding enthusiast, and a really technical people. My goal is to be a cloud developer, to achieve this goad i have seriously planed my career. And this is my first step, that is to be frontend developer. So i hope i can get this offer."
+}
+```
